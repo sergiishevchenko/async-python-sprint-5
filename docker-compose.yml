@@ -1,0 +1,49 @@
+version: '3.11'
+
+services:
+
+  db:
+    image: postgres:14.5
+    restart: always
+    expose:
+      - ${POSTGRES_EXPOSE}
+    env_file:
+      - ./.env
+
+  redis:
+    image: redis:7.0.5
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+
+  backend:
+    build: .
+    restart: always
+    command: sh -c "${BEFORE_RUNNING_BACKEND}"
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - ./src/files:/code/src/files/
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+
+  nginx:
+    image: nginx:1.19.3
+    restart: always
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    volumes:
+      - ./services/nginx.conf:/etc/nginx/conf.d/site.conf.template
+      - ./src/files:/code/src/files/
+    command: sh -c "${BEFORE_RUNNING_NGINX}"
+    env_file:
+      - ./.env
+
+    depends_on:
+      - backend
