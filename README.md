@@ -326,5 +326,6 @@ git clone git@github.com:sergiishevchenko/async-python-sprint-5.git
 docker-compose -up --build
 ```
 
-Проект на **Yandex Cloud**: `http://84.201.176.32:8080`.
-Docs: `http://84.201.176.32:8080/api/openapi` или `http://84.201.176.32:8080/redoc`.
+Проект на **Yandex Cloud**: [===>>> Жми сюда!](http://84.201.176.32:8080).
+
+**Docs**: [Swagger](http://84.201.176.32:8080/api/openapi) или [Redoc](http://84.201.176.32:8080/redoc).
