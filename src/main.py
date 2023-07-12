@@ -10,8 +10,10 @@ from src.api.v1 import base
 from src.core.settings import settings
 
 
-app = FastAPI(title=settings.title, docs_url='/api/openapi', openapi_url='/api/openapi.json',
-              default_response_class=ORJSONResponse, swagger_ui_oauth2_redirect_url='/auth/token')
+app = FastAPI(title=settings.title,
+              docs_url='/api/openapi',
+              openapi_url='/api/openapi.json',
+              default_response_class=ORJSONResponse,)
 
 app.include_router(base.router, prefix='/api/v1')
 app.mount('/files', StaticFiles(directory=settings.base_dir + '/files'), name='files')
