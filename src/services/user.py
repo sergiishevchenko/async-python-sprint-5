@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from typing import Generic, Optional, Type, TypeVar
 from uuid import uuid1
 
@@ -14,10 +15,13 @@ ModelType = TypeVar("ModelType", bound=Base)
 CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)
 
 
-class Repository:
+class Repository(ABC):
+
+    @abstractmethod
     def get_user_by_username(self, *args, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     def create(self, *args, **kwargs):
         raise NotImplementedError
 

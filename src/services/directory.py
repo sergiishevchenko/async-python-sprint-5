@@ -1,4 +1,5 @@
 import uuid
+from abc import ABC, abstractmethod
 from typing import Generic, Optional, Type, TypeVar
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -10,13 +11,17 @@ from src.models.models import Base
 ModelType = TypeVar("ModelType", bound=Base)
 
 
-class Repository:
+class Repository(ABC):
+
+    @abstractmethod
     def get_dir_by_path(self, *args, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     def get_dir_by_id(self, *args, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     def create_directory(self, *args, **kwargs):
         raise NotImplementedError
 

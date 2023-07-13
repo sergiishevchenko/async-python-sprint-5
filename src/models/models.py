@@ -19,7 +19,7 @@ class File(Base):
     __tablename__ = 'files'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid1)
-    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False, index=True)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
     name = Column(String(125), nullable=False)
     path = Column(String(255), nullable=False, unique=True)
     size = Column(Integer, nullable=False)

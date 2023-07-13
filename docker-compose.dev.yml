@@ -12,6 +12,8 @@ services:
 
   redis:
     image: redis:7.0.5
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
     depends_on:
       - db
     env_file:

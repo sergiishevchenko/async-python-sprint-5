@@ -96,7 +96,7 @@ def compress_by_full_path(bytes_io_obj: BytesIO, path: str, compression_type: st
 async def get_updated_io_obj_with_media_type(db: AsyncSession, redis_cache: RedisCacheBackend, path: str, compression_type: str) -> tuple[BytesIO, str]:
     bytes_io_obj = BytesIO()
     if path.find('/') == -1:
-        path = await get_path_by_id(db=db, obj_id=path, cache=redis_cache)
+        path = await get_path_by_id(db=db, obj_id=path, redis_cache=redis_cache)
     if not path.startswith('/'):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Path must starts with / .')
     updated_io_obj, media_type = compress_by_full_path(bytes_io_obj=bytes_io_obj, path=path, compression_type=compression_type)

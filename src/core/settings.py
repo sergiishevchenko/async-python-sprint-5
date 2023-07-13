@@ -1,7 +1,7 @@
 import os
-from typing import Final, Optional, Union
+from typing import Final
 
-from pydantic import BaseSettings, Field, PostgresDsn
+from pydantic import BaseSettings, Field
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

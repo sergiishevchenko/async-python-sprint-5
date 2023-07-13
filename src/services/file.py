@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from typing import Generic, Optional, Type, TypeVar
 
 from fastapi import File
@@ -13,16 +14,21 @@ from src.utils.file import put_file, create_file
 ModelType = TypeVar("ModelType", bound=Base)
 
 
-class Repository:
+class Repository(ABC):
+
+    @abstractmethod
     def get_file_by_path(self, *args, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     def get_file_by_id(self, *args, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     def get_list_by_user(self, *args, **kwargs):
         raise NotImplementedError
 
+    @abstractmethod
     def create_or_put_file(self, *args, **kwargs):
         raise NotImplementedError
 
